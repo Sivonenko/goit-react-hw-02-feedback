@@ -1,1 +1,1 @@
-export const FEEDBACK_OPTIONS = ['good', 'neutral', 'bad']
+export const fdbkOptions = ['good', 'neutral', 'bad']

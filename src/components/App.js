@@ -1,10 +1,66 @@
-import { Component } from 'react'
+// import { Component } from 'react';
 
+// import Section from './Section';
+// import FeedbackOptions from './FeedbackOptions'
+// import Statistics from './Statistics'
+// import { fdbkOptions } from '../data/constans'
+
+// class App extends Component {
+//   state = {
+//     good: 0,
+//     neutral: 0,
+//     bad: 0,
+//   };
+ 
+//     countTotalFeedback = () => {
+//     const { good, neutral, bad } = this.state 
+//     return good + neutral + bad
+//   }
+
+//   handleFeedback = (event) => { 
+//     const { name } = event.target.dataset;
+//     this.setState(prevState => ({[name]: prevState[name] +1}))
+//   }
+
+//   countPositiveFeedbackPercentage = () => {
+//      const { good } = this.state;
+//     const total = this.countTotalFeedback()
+//     return total ?Math.round((good / (total)) * 100) : 0
+//   }
+
+//   render() {
+//     const { good, neutral, bad } = this.state
+//     return (
+//       <div>
+//          <Section title='Please leave feedback'>
+//         <FeedbackOptions options={fdbkOptions} onleaveFeedback={this.handleaveFeedback}/>
+//       </Section>
+//           <Section title='Statistics'>
+//         <Statistics
+//           good={good}
+//           neutral={neutral}
+//           total={this.countTotalFeedback}
+//           bad={bad}
+//           positivePercentage={this.countPositiveFeedbackPercentage}
+//             />
+//             </Section>
+//       </div>
+
+//     );
+//   }
+// }
+
+// export default App;
+
+
+
+import { Component } from 'react'
+import Container from './Container'
 import Section from './Section'
 import FeedbackOptions from './FeedbackOptions'
 import Statistics from './Statistics'
 
-import{FEEDBACK_OPTIONS} from '../data/constans'
+import{fdbkOptions} from '../data/constans'
 class App extends Component {
   state = {
   good: 0,
@@ -24,31 +80,25 @@ class App extends Component {
     const total = this.countTotalFeedback()
     return total ?Math.round((good / (total)) * 100) : 0
   }
+
+  
   render() {
     const { good, neutral, bad } = this.state
-    const total = this.countTotalFeedback()
-    const positivePercentage = this.countPositiveFeedbackPercentage()
-    const styles = {
-      wrapper: {
-        background: '#b1b1b1',
-        width: "700px",
-        margin: '0 auto'
-      }
-    }
-    return <div style={styles.wrapper}>
+    
+    return <Container>
       <Section title='Please leave feedback'>
-        <FeedbackOptions options={FEEDBACK_OPTIONS} onleaveFeedback={this.handleaveFeedback}/>
+        <FeedbackOptions options={fdbkOptions} onleaveFeedback={this.handleaveFeedback}/>
       </Section>
       <Section title='Statistics'>
         <Statistics
           good={good}
           neutral={neutral}
-          total={total}
+          total={this.countTotalFeedback()}
           bad={bad}
-          positivePercentage={positivePercentage}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
         />
       </Section>
-    </div>
+    </Container>
   }
 }
 
